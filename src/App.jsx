@@ -1,11 +1,9 @@
 import "./App.css";
-import NavBar from "./components/NavBar";
-function App() {
+import Layout from "./components/Layout";
+export default function App() {
   return (
     <>
-      <NavBar />
+      <Layout />
     </>
   );
 }
-
-export default App;

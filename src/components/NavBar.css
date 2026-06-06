@@ -7,11 +7,11 @@
 }
 .nav-bar {
   width: 100%;
-  font-size: var(--navbar-font-size, 1.5rem);
+  font-size: var(--menu-font-size, 1.5rem);
   padding-block-start: var(--navbar-padding-top, 0.25em);
   padding-block-end: var(--navbar-padding-end, 0.5em);
-  background-color: var(--navbar-background-color, hsl(0, 0%, 30%));
-  color: var(--navbar-color, white);
+  background-color: var(--menu-background-color, hsl(0, 0%, 30%));
+  color: var(--menu-foreground-color, white);
 }
 .nav-bar-list {
   display: flex;
@@ -31,9 +31,11 @@ ol {
 .nav-bar-list a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
 }
 .nav-bar-list a:hover {
-  color: var(--nav-bar-hover-color, red);
+  color: var(--attention-foreground-color, red);
+  transform: scale(1.1);
 }
 
 .sub-menu-list {
@@ -41,8 +43,8 @@ ol {
   top: 100%;
   left: 0;
   text-align: left;
-  background-color: var(--navbar-color, hsl(0, 0%, 30%));
-  /* padding: 0.5em 1em; */
+  background-color: var(--menu-background-color, hsl(0, 0%, 30%));
+  padding: 0.25em 0.5em;
   opacity: 0;
   visibility: hidden;
   transition:
