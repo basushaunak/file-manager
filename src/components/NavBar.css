@@ -1,0 +1,71 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.nav-bar {
+  width: 100%;
+  font-size: var(--navbar-font-size, 1.5rem);
+  padding-block-start: var(--navbar-padding-top, 0.25em);
+  padding-block-end: var(--navbar-padding-end, 0.5em);
+  background-color: var(--navbar-background-color, hsl(0, 0%, 30%));
+  color: var(--navbar-color, white);
+}
+.nav-bar-list {
+  display: flex;
+  gap: 2rem;
+}
+.nav-bar-list li:last-child {
+  margin-inline-start: auto;
+  margin-inline-end: 1em;
+}
+ul,
+ol {
+  list-style: none;
+}
+.nav-bar-list > li {
+  position: relative;
+}
+.nav-bar-list a {
+  text-decoration: none;
+  color: inherit;
+}
+.nav-bar-list a:hover {
+  color: var(--nav-bar-hover-color, red);
+}
+
+.sub-menu-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  text-align: left;
+  background-color: var(--navbar-color, hsl(0, 0%, 30%));
+  /* padding: 0.5em 1em; */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+}
+.nav-bar-list > li:hover .sub-menu-list {
+  opacity: 1;
+  visibility: visible;
+}
+.sub-menu-list li {
+  width: 100%;
+}
+
+.sub-menu-list a {
+  display: block;
+  padding: 0.1em 0;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+.logo {
+  width: 40px;
+  height: auto;
+  margin-inline-start: 2rem;
+}
