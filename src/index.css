@@ -38,3 +38,14 @@ html {
   background-color: var(--primary-background-color);
   color: var(--primary-foreground-color);
 }
+/* Target Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Target Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

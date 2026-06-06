@@ -101,7 +101,7 @@ const SmartDate = forwardRef(
           ref={ref}
           type="text"
           value={inputValue}
-          placeholder="d/m/y (e.g. 14/2/25)"
+          placeholder="d/m/y"
           onChange={(e) => setInputValue(e.target.value)} // Free-text typing mode
           onBlur={handleBlur} // Parsing mechanics execute exclusively here
           className={`smart-date-input ${className}`}
