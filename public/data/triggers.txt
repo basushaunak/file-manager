@@ -5,6 +5,7 @@ BEGIN
         "chequeId",
         "chequeNumber",
         "chequeDate",
+        "ChequeAmount",
         "chequeDrawnTo",
         "chequeTreasuryToDate",
         "chequeTreasuryReturnDate",
@@ -12,12 +13,14 @@ BEGIN
         "chequeComments",
         "userID",
         "lastUpdated",
-        "isDeleted"
+        "isDeleted",
+        "isCancelled"
     )
     VALUES (
         OLD."chequeId",
         OLD."chequeNumber",
         OLD."chequeDate",
+        OLD."chequeAmount",
         OLD."chequeDrawnTo",
         OLD."chequeTreasuryToDate",
         OLD."chequeTreasuryReturnDate",
@@ -25,7 +28,8 @@ BEGIN
         OLD."chequeComments",
         OLD."userID",
         OLD."lastUpdated",
-        0
+        0,
+        "isCancelled"
     );
 END;
 CREATE TRIGGER trg_chequeTable_track_delete
@@ -35,6 +39,7 @@ BEGIN
         "chequeId",
         "chequeNumber",
         "chequeDate",
+        "chequeAmount",
         "chequeDrawnTo",
         "chequeTreasuryToDate",
         "chequeTreasuryReturnDate",
@@ -42,12 +47,14 @@ BEGIN
         "chequeComments",
         "userID",
         "lastUpdated",
-        "isDeleted"
+        "isDeleted",
+        "isCancelled"
     )
     VALUES (
         OLD."chequeId",
         OLD."chequeNumber",
         OLD."chequeDate",
+        OLD."chequeAmount",
         OLD."chequeDrawnTo",
         OLD."chequeTreasuryToDate",
         OLD."chequeTreasuryReturnDate",
@@ -55,7 +62,8 @@ BEGIN
         OLD."chequeComments",
         OLD."userID",
         OLD."lastUpdated",
-        1
+        1,
+        "isCancelled"
     );
 END;
 CREATE TRIGGER trg_departmentTable_track_update
@@ -107,7 +115,6 @@ CREATE TRIGGER trg_fileMovementTable_track_update
 BEFORE UPDATE ON "fileMovementTable"
 BEGIN
     INSERT INTO "fileMovementTable_History" (
-        "movementKey",
         "movementID",
         "fileID",
         "fromDepartmentId",
@@ -122,7 +129,6 @@ BEGIN
         "isDeleted"
     )
     VALUES (
-        OLD."movementKey",
         OLD."movementID",
         OLD."fileID",
         OLD."fromDepartmentId",
@@ -269,7 +275,8 @@ BEGIN
         "userIsAdmin",
         "isSuperAdmin",
         "lastUpdate",
-        "isDeleted"
+        "isDeleted",
+        "updatedByID"
     )
     VALUES (
         OLD."userID",
@@ -280,7 +287,8 @@ BEGIN
         OLD."userIsAdmin",
         OLD."isSuperAdmin",
         OLD."lastUpdate",
-        0
+        0,
+        OLD."updatedByID"
     );
 END;
 CREATE TRIGGER trg_userTable_track_delete
@@ -295,7 +303,8 @@ BEGIN
         "userIsAdmin",
         "isSuperAdmin",
         "lastUpdate",
-        "isDeleted"
+        "isDeleted",
+        "updatedByID"
     )
     VALUES (
         OLD."userID",
@@ -306,7 +315,8 @@ BEGIN
         OLD."userIsAdmin",
         OLD."isSuperAdmin",
         OLD."lastUpdate",
-        1
+        1,
+        OLD."updatedByID"
     );
 END;
 
