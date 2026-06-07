@@ -40,6 +40,7 @@ ol {
 
 .sub-menu-list {
   position: absolute;
+  z-index: 10;
   top: 100%;
   left: 0;
   text-align: left;

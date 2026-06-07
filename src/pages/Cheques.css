@@ -1,10 +1,11 @@
 /* Cheques css */
 .cheque-manager {
   position: absolute;
-  border: 2px red solid;
+  border: 2px var(--menu-foreground-color) solid;
   max-width: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 2em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -12,6 +13,16 @@
   color: var(--menu-foreground-color);
   padding: 2rem;
 }
+
+.cheque-manager > :last-child {
+  grid-column: 1 / span 2;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
 .cheque {
   /* max-width: 44%; */
   margin-inline: 2%;
@@ -19,6 +30,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5em 1em;
+}
+
+.cheque > :last-child {
+  grid-column: 1 / span 2;
 }
 .cheque > * {
   font-size: inherit;
@@ -42,4 +57,37 @@
 }
 .cheque-comments {
   width: 20px;
+}
+.checkbox {
+  font-size: inherit;
+  justify-self: flex-start;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-items: left;
+  gap: 1em;
+}
+#isCancelled {
+  cursor: pointer;
+  font-size: inherit;
+}
+.alert-input-label {
+  color: var(--warning-color);
+}
+.btn-cheques {
+  font-size: var(--menu-font-size);
+  width: 8ch;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--attention-background-color);
+  color: var(--attention-foreground-color);
+  cursor: pointer;
+}
+.btn-cheques:hover,
+.btn-cheques:focus {
+  border: var(--attention-foreground-color) 2px solid;
+}
+.btn-cheques-div {
+  margin-block: 0.5em;
 }

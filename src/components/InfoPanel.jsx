@@ -1,11 +1,11 @@
 import "./InfoPanel.css";
 export default function InfoPanel() {
-  const userName = "Shaunak Basu";
-  const department = "Finance";
+  const user = [0, "Shaunak Basu"];
+  const department = [1, "Finance"];
   return (
     <>
       <p>
-        User: {userName}, Department: {department}
+        User: {user[1]}, Department: {department[1]}
       </p>
     </>
   );
