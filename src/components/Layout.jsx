@@ -1,9 +1,9 @@
 // import React from "react";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./Layout.css";
-import Cheques from "../pages/Cheques";
+import Files from "../pages/Files";
 
 export default function Layout() {
   return (
@@ -11,7 +11,7 @@ export default function Layout() {
       <NavBar />
       <main className="main-content">
         {/* <Outlet /> */}
-        <Cheques />
+        <Files />
       </main>
       <Footer />
     </div>
