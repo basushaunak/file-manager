@@ -29,7 +29,7 @@ export default function Schemes() {
   return (
     <div className="schemes-manager">
       <form action="" className="schemes">
-        <label htmlFor="scheme-no">File No.: </label>
+        <label htmlFor="scheme-no">Scheme No.: </label>
         <input type="text" id="scheme-no" />
         <label htmlFor="scheme-details">Description: </label>
         <input type="text" id="scheme-details" />

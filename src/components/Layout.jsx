@@ -3,7 +3,7 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./Layout.css";
-import Schemes from "../pages/Schemes";
+import Users from "../pages/Users";
 
 export default function Layout() {
   return (
@@ -11,7 +11,7 @@ export default function Layout() {
       <NavBar />
       <main className="main-content">
         {/* <Outlet /> */}
-        <Schemes />
+        <Users />
       </main>
       <Footer />
     </div>

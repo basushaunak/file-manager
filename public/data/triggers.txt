@@ -234,14 +234,14 @@ BEFORE UPDATE ON "schemeTable"
 BEGIN
     INSERT INTO "schemeTable_History" (
         "schemeID",
-        "schemeNo",
+        "schemeNumber",
         "schemeDetails",
         "userID",
         "isDeleted"
     )
     VALUES (
         OLD."schemeID",
-        OLD."schemeNo",
+        OLD."schemeNumber",
         OLD."schemeDetails",
         OLD."userID",
         0
@@ -252,13 +252,13 @@ BEFORE DELETE ON "schemeTable"
 BEGIN
     INSERT INTO "schemeTable_History" (
         "schemeID",
-        "schemeNo",
+        "schemeNumber",
         "schemeDetails",
         "isDeleted"
     )
     VALUES (
         OLD."schemeID",
-        OLD."schemeNo",
+        OLD."schemeNumber",
         OLD."schemeDetails",
         1
     );

@@ -22,7 +22,7 @@ export default function NavBar() {
         },
         { menuItem: "Users", link: "#", visible: true, subMenu: false },
         {
-          menuItem: "Reset Password",
+          menuItem: "Change Password",
           link: "#",
           visible: isSuperUser,
           subMenu: false,
