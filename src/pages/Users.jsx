@@ -10,13 +10,24 @@ export default function Users() {
   // "isSuperAdmin"	INTEGER NOT NULL DEFAULT 0 CHECK("isSuperAdmin" IN (0, 1)),
   // "lastUpdate"	TEXT DEFAULT CURRENT_DATE,
   const isSuperAdmin = 1;
+  const isAdmin = 1;
   return (
     <div className="users-manager">
       <form action="" className="users">
+        {isSuperAdmin ? (
+          <>
+            <label htmlFor="user-department">Department: </label>
+            <input type="text" id="user-department" />
+          </>
+        ) : (
+          ""
+        )}
         <label htmlFor="user-name">User Name: </label>
         <input type="text" id="user-name" />
         <label htmlFor="user-password">Password: </label>
         <input type="password" id="user-password" />
+        <label htmlFor="confirm-user-password">Confirm Password: </label>
+        <input type="password" id="confirm-user-password" />
         <label htmlFor="user-comments">Comments: </label>
         <input type="text" id="user-comments" />
         {isSuperAdmin ? (
@@ -29,23 +40,20 @@ export default function Users() {
         ) : (
           ""
         )}
-        {/* <label htmlFor="file-owner">Owner Dept. : </label>
-        <input type="text" id="file-owner" />
-        <label htmlFor="scheme">Scheme: </label>
-        <input type="text" id="scheme" />
-        <label htmlFor="file-comments">Comments:</label>
-        <textarea name="" id="file-comments" rows="3"></textarea> */}
-        {/* <div class="checkbox alert-input">
-          <label htmlFor="isCancelled" class="alert-input-label">
-            Cancelled
-          </label>
-          <input type="checkbox" id="isCancelled" />
-        </div> */}
       </form>
       <div class="btn-users-div">
-        <button className="btn-users">Add</button>
-        <button className="btn-users">Edit</button>
-        <button className="btn-users">Delete</button>
+        {isAdmin || isSuperAdmin ? (
+          <>
+            <button className="btn-users">Add</button>
+            <button className="btn-users">Edit</button>
+            <button className="btn-users">Delete</button>
+          </>
+        ) : (
+          <>
+            <button className="btn-users">Save</button>
+            <button className="btn-users">Cancel</button>{" "}
+          </>
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./Layout.css";
-import Users from "../pages/Users";
+import FileMovement from "../pages/FileMovement";
 
 export default function Layout() {
   return (
@@ -11,7 +11,7 @@ export default function Layout() {
       <NavBar />
       <main className="main-content">
         {/* <Outlet /> */}
-        <Users />
+        <FileMovement />
       </main>
       <Footer />
     </div>
