@@ -27,8 +27,8 @@ export default function FileMovement() {
         <input type="text" id="from-department" />
         <label htmlFor="to-department">To: </label>
         <input type="text" id="to-department" />
-        <label htmlFor="movement-omments"></label>
-        <textarea id="movement-omments" rows="3"></textarea>
+        <label htmlFor="movement-omments">Comments</label>
+        <textarea id="movement-comments" rows="3"></textarea>
         <div class="checkbox">
           <label htmlFor="isProcessed">Processed</label>
           <input type="checkbox" id="isProcessed" />
