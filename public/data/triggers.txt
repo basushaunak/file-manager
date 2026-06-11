@@ -14,7 +14,8 @@ BEGIN
         "userID",
         "lastUpdated",
         "isDeleted",
-        "isCancelled"
+        "isCancelled",
+        "BranchID"
     )
     VALUES (
         OLD."chequeId",
@@ -29,7 +30,8 @@ BEGIN
         OLD."userID",
         OLD."lastUpdated",
         0,
-        "isCancelled"
+        OLD."isCancelled",
+        OLD."BranchID"
     );
 END;
 CREATE TRIGGER trg_chequeTable_track_delete
@@ -48,7 +50,8 @@ BEGIN
         "userID",
         "lastUpdated",
         "isDeleted",
-        "isCancelled"
+        "isCancelled",
+        "BranchID"
     )
     VALUES (
         OLD."chequeId",
@@ -63,7 +66,8 @@ BEGIN
         OLD."userID",
         OLD."lastUpdated",
         1,
-        "isCancelled"
+        "isCancelled",
+        "BranchID"
     );
 END;
 CREATE TRIGGER trg_departmentTable_track_update
@@ -317,6 +321,86 @@ BEGIN
         OLD."lastUpdate",
         1,
         OLD."updatedByID"
+    );
+END;
+CREATE TRIGGER trg_BankTable_track_update
+BEFORE UPDATE ON "BankTable"
+BEGIN
+    INSERT INTO "BankTable_History" (
+        "bankID",
+        "bankName",
+        "userID",
+        "lastUpdated",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."bankID",
+        OLD."bankName",
+        OLD."userID",
+        OLD."lastUpdated",
+        0
+    );
+END;
+CREATE TRIGGER trg_BankTable_track_delete
+BEFORE DELETE ON "BankTable"
+BEGIN
+    INSERT INTO "BankTable_History" (
+        "bankID",
+        "bankName",
+        "userID",
+        "lastUpdated",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."bankID",
+        OLD."bankName",
+        OLD."userID",
+        OLD."lastUpdated",
+        1
+    );
+END;
+CREATE TRIGGER trg_BankBranchTable_track_update
+BEFORE UPDATE ON "BankBranchTable"
+BEGIN
+    INSERT INTO "BankBranchTable_History" (
+        "branchID",
+        "bankID",
+        "branchName",
+        "branchAddress",
+        "lastUpdated",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."branchID",
+        OLD."bankID",
+        OLD."branchName",
+        OLD."branchAddress",
+        OLD."lastUpdated",
+        OLD."userID",
+        0
+    );
+END;
+CREATE TRIGGER trg_BankBranchTable_track_delete
+BEFORE DELETE ON "BankBranchTable"
+BEGIN
+    INSERT INTO "BankBranchTable_History" (
+        "branchID",
+        "bankID",
+        "branchName",
+        "branchAddress",
+        "lastUpdated",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."branchID",
+        OLD."bankID",
+        OLD."branchName",
+        OLD."branchAddress",
+        OLD."lastUpdated",
+        OLD."userID",
+        0
     );
 END;
 

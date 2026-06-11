@@ -3,7 +3,7 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./Layout.css";
-import FileMovement from "../pages/FileMovement";
+import FileMovement from "../pages/Home";
 
 export default function Layout() {
   return (

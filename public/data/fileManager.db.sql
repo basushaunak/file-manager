@@ -1,6 +1,27 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "chequeTable" (
+DROP TABLE IF EXISTS "bankBranchTable";
+CREATE TABLE "bankBranchTable" (
+	"branchID"	INTEGER,
+	"bankID"	INTEGER,
+	"branchName"	TEXT NOT NULL,
+	"branchAddress"	INTEGER,
+	"lastUpdated"	TEXT,
+	"userID"	INTEGER,
+	PRIMARY KEY("branchID" AUTOINCREMENT),
+	FOREIGN KEY("bankID") REFERENCES "bankTable"("BankID")
+);
+DROP TABLE IF EXISTS "bankTable";
+CREATE TABLE "bankTable" (
+	"BankID"	INTEGER,
+	"BankName"	TEXT NOT NULL,
+	"lastUpdated"	TEXT,
+	"UserID"	INTEGER NOT NULL,
+	PRIMARY KEY("BankID" AUTOINCREMENT)
+);
+DROP TABLE IF EXISTS "chequeTable";
+CREATE TABLE "chequeTable" (
 	"chequeID"	INTEGER,
+	"branchID"	INTEGER NOT NULL,
 	"chequeNumber"	TEXT NOT NULL,
 	"chequeDate"	TEXT NOT NULL,
 	"chequeDrawnTo"	TEXT NOT NULL,
@@ -13,9 +34,11 @@ CREATE TABLE IF NOT EXISTS "chequeTable" (
 	"userID"	INTEGER NOT NULL,
 	"lastUpdated"	TEXT,
 	PRIMARY KEY("chequeID" AUTOINCREMENT),
+	FOREIGN KEY("branchID") REFERENCES "bankBranchTable"("branchID"),
 	FOREIGN KEY("userID") REFERENCES "userTable"("userID")
 );
-CREATE TABLE IF NOT EXISTS "departmentTable" (
+DROP TABLE IF EXISTS "departmentTable";
+CREATE TABLE "departmentTable" (
 	"departmentID"	INTEGER,
 	"departmentCode"	TEXT NOT NULL UNIQUE,
 	"departmentDescription"	TEXT NOT NULL,
@@ -25,7 +48,8 @@ CREATE TABLE IF NOT EXISTS "departmentTable" (
 	"userID"	INTEGER,
 	PRIMARY KEY("departmentID" AUTOINCREMENT)
 );
-CREATE TABLE IF NOT EXISTS "fileMovementTable" (
+DROP TABLE IF EXISTS "fileMovementTable";
+CREATE TABLE "fileMovementTable" (
 	"movementID"	INTEGER,
 	"fileID"	INTEGER NOT NULL,
 	"moveDate"	TEXT NOT NULL DEFAULT CURRENT_DATE,
@@ -44,7 +68,8 @@ CREATE TABLE IF NOT EXISTS "fileMovementTable" (
 	FOREIGN KEY("toDepartmentID") REFERENCES "departmentTable"("departmentID"),
 	FOREIGN KEY("userID") REFERENCES "userTable"("userID")
 );
-CREATE TABLE IF NOT EXISTS "fileTable" (
+DROP TABLE IF EXISTS "fileTable";
+CREATE TABLE "fileTable" (
 	"fileID"	INTEGER,
 	"fileNumber"	TEXT NOT NULL,
 	"fileDescription"	TEXT NOT NULL,
@@ -57,7 +82,8 @@ CREATE TABLE IF NOT EXISTS "fileTable" (
 	FOREIGN KEY("fileOwner") REFERENCES "departmentTable"("departmentID"),
 	FOREIGN KEY("schemeID") REFERENCES "schemeTable"("schemeID")
 );
-CREATE TABLE IF NOT EXISTS "schemeTable" (
+DROP TABLE IF EXISTS "schemeTable";
+CREATE TABLE "schemeTable" (
 	"schemeID"	INTEGER NOT NULL UNIQUE,
 	"schemeNumber"	TEXT NOT NULL UNIQUE,
 	"schemeDetails"	TEXT NOT NULL,
@@ -65,7 +91,8 @@ CREATE TABLE IF NOT EXISTS "schemeTable" (
 	PRIMARY KEY("schemeID" AUTOINCREMENT),
 	FOREIGN KEY("userID") REFERENCES "userTable"("userID")
 );
-CREATE TABLE IF NOT EXISTS "userTable" (
+DROP TABLE IF EXISTS "userTable";
+CREATE TABLE "userTable" (
 	"userID"	INTEGER,
 	"userName"	TEXT NOT NULL,
 	"userDepartmentID"	INTEGER NOT NULL,
