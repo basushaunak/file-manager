@@ -1,0 +1,4 @@
+.date-time {
+  font-size: var(--font-size, 1.2rem);
+  color: var(--bright-color, white);
+}

@@ -1,0 +1,55 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  /* Light Theme */
+  --primary-background-color: hsl(203, 71%, 90%);
+  --secondary-background-color: hsl(203, 95%, 80%);
+  --menu-background-color: hsl(203, 83%, 70%);
+  --attention-background-color: hsl(217, 59%, 60%);
+
+  /* Dark Theme  */
+  --attention-foreground-color: hsl(248, 57%, 5%);
+  --menu-foreground-color: hsl(241, 54%, 25%);
+  --secondary-foreground-color: hsl(228, 74%, 33%);
+  --primary-foreground-color: hsl(240, 77%, 54%);
+  --warning-color: hsl(0, 100%, 40%);
+
+  --font-size: 1.2rem;
+  --menu-font-size: 1.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-foreground-color: hsl(203, 71%, 90%);
+    --secondary-foreground-color: hsl(203, 95%, 80%);
+    --menu-foreground-color: hsl(203, 83%, 70%);
+    --attention-foreground-color: hsl(217, 59%, 60%);
+
+    --attention-background-color: hsl(248, 57%, 5%);
+    --menu-background-color: hsl(241, 54%, 25%);
+    --secondary-background-color: hsl(228, 74%, 33%);
+    --primary-background-color: hsl(240, 77%, 54%);
+    --warning-color: hsl(0, 100%, 80%);
+  }
+}
+html {
+  background-color: var(--primary-background-color);
+  color: var(--primary-foreground-color);
+}
+/* Target Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Target Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

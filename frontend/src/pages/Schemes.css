@@ -1,0 +1,66 @@
+/* Schemes css */
+
+.schemes-manager {
+  position: absolute;
+  border: 2px var(--menu-foreground-color) solid;
+  max-width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--menu-background-color);
+  color: var(--menu-foreground-color);
+  padding: 2rem;
+}
+
+.schemes-manager > :last-child {
+  grid-column: 1 / span 2;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.schemes {
+  /* max-width: 44%; */
+  margin-inline: 2%;
+  font-size: var(--menu-font-size);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: var(--menu-font-size);
+  gap: 0.5em 1em;
+}
+
+.schemes > * {
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+#scheme-no {
+  width: 10ch;
+}
+
+#scheme-description {
+  width: 20ch;
+}
+
+.btn-schemes {
+  font-size: var(--menu-font-size);
+  width: 8ch;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--attention-background-color);
+  color: var(--attention-foreground-color);
+  cursor: pointer;
+}
+.btn-schemes:hover,
+.btn-schemes:focus {
+  border: var(--attention-foreground-color) 2px solid;
+}
+.btn-schemes-div {
+  margin-block: 0.5em;
+}
