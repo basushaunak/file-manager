@@ -1,0 +1,406 @@
+CREATE TRIGGER trg_chequeTable_track_update
+BEFORE UPDATE ON "chequeTable"
+BEGIN
+    INSERT INTO "chequeTable_History" (
+        "chequeId",
+        "chequeNumber",
+        "chequeDate",
+        "ChequeAmount",
+        "chequeDrawnTo",
+        "chequeTreasuryToDate",
+        "chequeTreasuryReturnDate",
+        "chequeDispatchDate",
+        "chequeComments",
+        "userID",
+        "lastUpdated",
+        "isDeleted",
+        "isCancelled",
+        "BranchID"
+    )
+    VALUES (
+        OLD."chequeId",
+        OLD."chequeNumber",
+        OLD."chequeDate",
+        OLD."chequeAmount",
+        OLD."chequeDrawnTo",
+        OLD."chequeTreasuryToDate",
+        OLD."chequeTreasuryReturnDate",
+        OLD."chequeDispatchDate",
+        OLD."chequeComments",
+        OLD."userID",
+        OLD."lastUpdated",
+        0,
+        OLD."isCancelled",
+        OLD."BranchID"
+    );
+END;
+CREATE TRIGGER trg_chequeTable_track_delete
+BEFORE DELETE ON "chequeTable"
+BEGIN
+    INSERT INTO "chequeTable_History" (
+        "chequeId",
+        "chequeNumber",
+        "chequeDate",
+        "chequeAmount",
+        "chequeDrawnTo",
+        "chequeTreasuryToDate",
+        "chequeTreasuryReturnDate",
+        "chequeDispatchDate",
+        "chequeComments",
+        "userID",
+        "lastUpdated",
+        "isDeleted",
+        "isCancelled",
+        "BranchID"
+    )
+    VALUES (
+        OLD."chequeId",
+        OLD."chequeNumber",
+        OLD."chequeDate",
+        OLD."chequeAmount",
+        OLD."chequeDrawnTo",
+        OLD."chequeTreasuryToDate",
+        OLD."chequeTreasuryReturnDate",
+        OLD."chequeDispatchDate",
+        OLD."chequeComments",
+        OLD."userID",
+        OLD."lastUpdated",
+        1,
+        "isCancelled",
+        "BranchID"
+    );
+END;
+CREATE TRIGGER trg_departmentTable_track_update
+BEFORE UPDATE ON "departmentTable"
+BEGIN
+    INSERT INTO "departmentTable_History" (
+        "departmentID",
+        "departmentCode",
+        "departmentDescription",
+        "departmentComments",
+        "isRootDepartment",
+        "lastUpdate",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."departmentID",
+        OLD."departmentCode",
+        OLD."departmentDescription",
+        OLD."departmentComments",
+        OLD."isRootDepartment",
+        OLD."lastUpdate",
+        0
+    );
+END;
+CREATE TRIGGER trg_departmentTable_track_delete
+BEFORE DELETE ON "departmentTable"
+BEGIN
+    INSERT INTO "departmentTable_History" (
+        "departmentID",
+        "departmentCode",
+        "departmentDescription",
+        "departmentComments",
+        "isRootDepartment",
+        "lastUpdate",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."departmentID",
+        OLD."departmentCode",
+        OLD."departmentDescription",
+        OLD."departmentComments",
+        OLD."isRootDepartment",
+        OLD."lastUpdate",
+        1
+    );
+END;
+
+CREATE TRIGGER trg_fileMovementTable_track_update
+BEFORE UPDATE ON "fileMovementTable"
+BEGIN
+    INSERT INTO "fileMovementTable_History" (
+        "movementID",
+        "fileID",
+        "fromDepartmentId",
+        "moveDate",
+        "moveTime",
+        "toDepartmentID",
+        "priority",
+        "isProcessed",
+        "isLocked",
+        "userID",
+        "lastUpdate",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."movementID",
+        OLD."fileID",
+        OLD."fromDepartmentId",
+        OLD."moveDate",
+        OLD."moveTime",
+        OLD."toDepartmentID",
+        OLD."priority",
+        OLD."isProcessed",
+        OLD."isLocked",
+        OLD."userID",
+        OLD."lastUpdate",
+        0
+    );
+END;
+CREATE TRIGGER trg_fileMovementTable_track_delete
+BEFORE DELETE ON "fileMovementTable"
+BEGIN
+    INSERT INTO "fileMovementTable_History" (
+        "movementKey",
+        "movementID",
+        "fileID",
+        "fromDepartmentId",
+        "moveDate",
+        "moveTime",
+        "toDepartmentID",
+        "priority",
+        "isProcessed",
+        "isLocked",
+        "userID",
+        "lastUpdate",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."movementKey",
+        OLD."movementID",
+        OLD."fileID",
+        OLD."fromDepartmentId",
+        OLD."moveDate",
+        OLD."moveTime",
+        OLD."toDepartmentID",
+        OLD."priority",
+        OLD."isProcessed",
+        OLD."isLocked",
+        OLD."userID",
+        OLD."lastUpdate",
+        1
+    );
+END;
+CREATE TRIGGER trg_fileTable_track_update
+BEFORE UPDATE ON "fileTable"
+BEGIN
+    INSERT INTO "fileTable_History" (
+        "fileID",
+        "fileNumber",
+        "fileDescription",
+        "fileComments",
+        "fileOwner",
+        "schemeID",
+        "lastUpdate",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."fileID",
+        OLD."fileNumber",
+        OLD."fileDescription",
+        OLD."fileComments",
+        OLD."fileOwner",
+        OLD."schemeID",
+        OLD."lastUpdate",
+        OLD."userID",
+        0
+    );
+END;
+CREATE TRIGGER trg_fileTable_track_delete
+BEFORE DELETE ON "fileTable"
+BEGIN
+    INSERT INTO "fileTable_History" (
+        "fileID",
+        "fileNumber",
+        "fileDescription",
+        "fileComments",
+        "fileOwner",
+        "schemeID",
+        "lastUpdate",
+        "isDeleted",
+        "userID"
+    )
+    VALUES (
+        OLD."fileID",
+        OLD."fileNumber",
+        OLD."fileDescription",
+        OLD."fileComments",
+        OLD."fileOwner",
+        OLD."schemeID",
+        OLD."lastUpdate",
+        OLD."userID",
+        1
+    );
+END;
+CREATE TRIGGER trg_schemeTable_track_update
+BEFORE UPDATE ON "schemeTable"
+BEGIN
+    INSERT INTO "schemeTable_History" (
+        "schemeID",
+        "schemeNumber",
+        "schemeDetails",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."schemeID",
+        OLD."schemeNumber",
+        OLD."schemeDetails",
+        OLD."userID",
+        0
+    );
+END;
+CREATE TRIGGER trg_schemeTable_track_delete
+BEFORE DELETE ON "schemeTable"
+BEGIN
+    INSERT INTO "schemeTable_History" (
+        "schemeID",
+        "schemeNumber",
+        "schemeDetails",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."schemeID",
+        OLD."schemeNumber",
+        OLD."schemeDetails",
+        1
+    );
+END;
+CREATE TRIGGER trg_userTable_track_update
+BEFORE UPDATE ON "userTable"
+BEGIN
+    INSERT INTO "userTable_History" (
+        "userID",
+        "userName",
+        "userDepartmentID",
+        "userPassword",
+        "userComments",
+        "userIsAdmin",
+        "isSuperAdmin",
+        "lastUpdate",
+        "isDeleted",
+        "updatedByID"
+    )
+    VALUES (
+        OLD."userID",
+        OLD."userName",
+        OLD."userDepartmentID",
+        OLD."userPassword",
+        OLD."userComments",
+        OLD."userIsAdmin",
+        OLD."isSuperAdmin",
+        OLD."lastUpdate",
+        0,
+        OLD."updatedByID"
+    );
+END;
+CREATE TRIGGER trg_userTable_track_delete
+BEFORE DELETE ON "userTable"
+BEGIN
+    INSERT INTO "userTable_History" (
+        "userID",
+        "userName",
+        "userDepartmentID",
+        "userPassword",
+        "userComments",
+        "userIsAdmin",
+        "isSuperAdmin",
+        "lastUpdate",
+        "isDeleted",
+        "updatedByID"
+    )
+    VALUES (
+        OLD."userID",
+        OLD."userName",
+        OLD."userDepartmentID",
+        OLD."userPassword",
+        OLD."userComments",
+        OLD."userIsAdmin",
+        OLD."isSuperAdmin",
+        OLD."lastUpdate",
+        1,
+        OLD."updatedByID"
+    );
+END;
+CREATE TRIGGER trg_BankTable_track_update
+BEFORE UPDATE ON "BankTable"
+BEGIN
+    INSERT INTO "BankTable_History" (
+        "bankID",
+        "bankName",
+        "userID",
+        "lastUpdated",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."bankID",
+        OLD."bankName",
+        OLD."userID",
+        OLD."lastUpdated",
+        0
+    );
+END;
+CREATE TRIGGER trg_BankTable_track_delete
+BEFORE DELETE ON "BankTable"
+BEGIN
+    INSERT INTO "BankTable_History" (
+        "bankID",
+        "bankName",
+        "userID",
+        "lastUpdated",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."bankID",
+        OLD."bankName",
+        OLD."userID",
+        OLD."lastUpdated",
+        1
+    );
+END;
+CREATE TRIGGER trg_BankBranchTable_track_update
+BEFORE UPDATE ON "BankBranchTable"
+BEGIN
+    INSERT INTO "BankBranchTable_History" (
+        "branchID",
+        "bankID",
+        "branchName",
+        "branchAddress",
+        "lastUpdated",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."branchID",
+        OLD."bankID",
+        OLD."branchName",
+        OLD."branchAddress",
+        OLD."lastUpdated",
+        OLD."userID",
+        0
+    );
+END;
+CREATE TRIGGER trg_BankBranchTable_track_delete
+BEFORE DELETE ON "BankBranchTable"
+BEGIN
+    INSERT INTO "BankBranchTable_History" (
+        "branchID",
+        "bankID",
+        "branchName",
+        "branchAddress",
+        "lastUpdated",
+        "userID",
+        "isDeleted"
+    )
+    VALUES (
+        OLD."branchID",
+        OLD."bankID",
+        OLD."branchName",
+        OLD."branchAddress",
+        OLD."lastUpdated",
+        OLD."userID",
+        0
+    );
+END;
+
